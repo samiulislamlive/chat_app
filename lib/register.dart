@@ -1,5 +1,6 @@
 import 'package:chat_app/firebaseHelper.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'login.dart';
 
 class Registration extends StatelessWidget {
@@ -34,7 +35,7 @@ class Registration extends StatelessWidget {
                   fontSize: 30,
                 ),),
               SizedBox(height: 10,),
-              /*Padding(
+              Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   controller: nameController,
@@ -45,7 +46,7 @@ class Registration extends StatelessWidget {
                       )
                   ),
                 ),
-              ),*/
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
@@ -71,9 +72,12 @@ class Registration extends StatelessWidget {
                   ),
                 ),
               ),
-              ElevatedButton(onPressed: (){
+              ElevatedButton(onPressed: () async{
+                SharedPreferences pref = await SharedPreferences.getInstance();
                 if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty){
                   service.createUser(context, emailController.text, passwordController.text);
+                  
+                  pref.setString("email", emailController.text);
                 }
                 else
                   {

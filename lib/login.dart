@@ -1,6 +1,7 @@
 import 'package:chat_app/firebaseHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'register.dart';
 import 'package:chat_app/register.dart';
 class LoginPage extends StatelessWidget {
@@ -61,9 +62,11 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-              ElevatedButton(onPressed: (){
+              ElevatedButton(onPressed: () async{
+                SharedPreferences pref = await SharedPreferences.getInstance();
                 if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty){
                   service.loginUser(context, emailController.text, passwordController.text);
+                  pref.setString("email", emailController.text);
                 }
                 else
                 {

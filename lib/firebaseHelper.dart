@@ -34,7 +34,10 @@ class Service{
 
   void signOut(context) async{
     try{
-      await auth.signOut();
+      await auth.signOut().then((value) => {
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (context)=> LoginPage()), (route) => false)
+      }) ;
     }catch(e){
       errorBox(context, e);
     }
