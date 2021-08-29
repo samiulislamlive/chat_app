@@ -35,7 +35,7 @@ class Registration extends StatelessWidget {
                   fontSize: 30,
                 ),),
               SizedBox(height: 10,),
-              Padding(
+              /*Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   controller: nameController,
@@ -46,7 +46,7 @@ class Registration extends StatelessWidget {
                       )
                   ),
                 ),
-              ),
+              ),*/
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
